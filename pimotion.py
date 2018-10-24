@@ -4,14 +4,15 @@ import picamera
 import picamera.array
 import numpy as np
 
-FILE_PATTERN = 'motion%02d.h264'
+FILE_PATTERN = '/root/RPi/h264/motion%02d.h264'
 FILE_BUFFER = 1048576
 
 REC_SECONDS = 10
 REC_BITRATE = 1000000
 
-MOTION_MAGNITUDE = 60
+MOTION_MAGNITUDE = 80
 MOTION_VECTORS = 10
+
 
 class MotionDetector(picamera.array.PiMotionAnalysis):
     def __init__(self, camera, size=None):
