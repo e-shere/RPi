@@ -4,6 +4,9 @@ import time
 
 
 def start_tshark():
+    os.system('sudo ifconfig wlan0 down')
+    os.system('sudo iwconfig wlan0 mode monitor')
+    os.system('sudo ifconfig wlan0 up')
     os.system("sudo tshark -i wlan0 -T fields -e frame.time -e wlan.sa -e radiotap.channel.freq -e radiotap.dbm_antsignal > ~/Documents/$(date '+%Y_%m_%d_%H_%M_%S').txt")
 
 def channel_hop():
@@ -16,10 +19,18 @@ def channel_hop():
         time.sleep(wait)
 
 if __name__=='__main__':
-    os.system('sudo ifconfig wlan0 down')
-    os.system('sudo iwconfig wlan0 mode monitor')
-    os.system('sudo ifconfig wlan0 up')
     p1 = Process(target=start_tshark)
     p1.start()
     p2 = Process(target=channel_hop)
     p2.start()
+    while True:
+        if p1.is_alive() == False:
+            p1.terminate()
+            time.sleep(0.1)
+            p1 = Process(target=start_tshark)
+            p1.start()
+        if p2.is_alive() == False:
+            p2.terminate()
+            time.sleep(0.1)
+            p2 = Process(target=channel_hop)
+            p2.start()
