@@ -23,13 +23,14 @@ Single script that:
   - Starts all over again
 
 ## Things I had to do to make it work:
-I've been running this on Kali for RPi (https://www.offensive-security.com/kali-linux-arm-images/ choosing "Kali Linux RaspberryPi 2 and 3") because TShark seems to work slightly better on Kali. This means that a lot of the things I had to do will not be necessary on Raspbian as they come by default.
+I've been running this on [Kali for RPi](https://www.offensive-security.com/kali-linux-arm-images/) (choosing "Kali Linux RaspberryPi 2 and 3") because TShark seems to work slightly better on Kali. This means that a lot of the things I had to do will not be necessary on Raspbian as they come by default.
 
 ### To use the RPi camera and picamera module in python:
 - Downloaded [Re4son-Pi-Kernel](https://re4son-kernel.com/re4son-pi-kernel/)
+- Installed the following two python modules:
 ```python
-- pip install picamera
-- pip install numpy
+  pip install picamera
+  pip install numpy
 ```
 - To the file /boot/config.txt, added these two lines:
   - start_x=1 <= camera is prepared during boot
@@ -37,6 +38,18 @@ I've been running this on Kali for RPi (https://www.offensive-security.com/kali-
 - To the file /etc/modules, added this:
   - bcm2835-v4l2 <= the driver for the RPi camera
 - Ran ```raspistill -v``` and rebooted
+
+### To convert h264 into mp4
+- Installed ffmpeg:
+```sudo apt-get install ffmpeg```
+
+### To allow scp from the RPi to my laptop
+- Enabled SSH without a password, from RPi to laptop:
+```
+ssh-keygen
+ssh-copy-id user@laptop
+```
+- Edited settings on RPi and laptop so that they don't go to 'sleep'
 
 ## What I still need to do:
 
