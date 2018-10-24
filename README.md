@@ -8,7 +8,7 @@ This loops through all the video files in h264, renames them to the date and tim
 
 ### wifi_scanner.py
 This simultaneously runs two processes:
-- TShark. Captures a list of the MAC addresses of pacets that it sniffs and records data in this order:
+- TShark. Captures a list of the MAC addresses of packets that it sniffs and records data in this order:
   Time of capture, Source MAC address, Frequency on which it was captured, Relative signal strength
 - Channel hopping. Loops through channels 1-14 of the 2.4GHz frequency, needed so that TShark can capture all the devices around it not just the ones on a single channel.
 
