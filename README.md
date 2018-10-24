@@ -57,3 +57,4 @@ ssh-copy-id user@laptop
 - Find a way of speeding up h264 to mp4 conversion, it is the slowest part of the process
 - Figure out how to make sure the USB dongle has a static name (eg wlan0), instead of swapping between wlan1 and wlan0 on reboot
 - Handle directories such as h264 and mp4 not existing => create them automatically
+- Add commenting to programs
