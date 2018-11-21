@@ -54,7 +54,3 @@ ssh-copy-id user@laptop
 ## What I still need to do:
 - Handle gracefull termination of pimotion.py and wifi_scanner.py when start_all.py is terminated. (This doesn't work at the moment and I have to use ```killall python```)
 - Figure out why sometimes TSHark captures packets without a source MAC address. Why does this happen? Filter out all lines from wifi_data files that don't contain a MAC address
-- Find a way of speeding up h264 to mp4 conversion, it is the slowest part of the process
-- Figure out how to make sure the USB dongle has a static name (eg wlan0), instead of swapping between wlan1 and wlan0 on reboot
-- Handle directories such as h264 and mp4 not existing => create them automatically
-- Add commenting to programs
