@@ -51,6 +51,13 @@ ssh-copy-id user@laptop
 ```
 - Edited settings on RPi and laptop so that they don't go to 'sleep'
 
+### Ensuring that the USB dongle has a static name (even after reboot)
+- Many of the useful files such as tc/udev/rules.d/70-persistent-net.rules or 75-persistent-net-generator.rules are missing, so the easiest way to get around this is to create the file /etc/udev/rules.d/76-netnames.rules, and add this line to it:
+```
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="us:bm:ac:ad:dr:ss", NAME="customname"
+```
+And then reboot the RPi.
+
 ## What I still need to do:
 - Handle gracefull termination of pimotion.py and wifi_scanner.py when start_all.py is terminated. (This doesn't work at the moment and I have to use ```killall python```)
 - Figure out why sometimes TSHark captures packets without a source MAC address. Why does this happen? Filter out all lines from wifi_data files that don't contain a MAC address
