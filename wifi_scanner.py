@@ -2,19 +2,19 @@ from multiprocessing import Process
 import os
 import time
 
-
+wlan_name = "mywifi"
 def start_tshark():
-    os.system('sudo ifconfig wlan0 down')
-    os.system('sudo iwconfig wlan0 mode monitor')
-    os.system('sudo ifconfig wlan0 up')
-    os.system("sudo tshark -i wlan0 -T fields -e frame.time -e wlan.sa -e radiotap.channel.freq -e radiotap.dbm_antsignal > ~/Documents/$(date '+%Y_%m_%d_%H_%M_%S').txt > /dev/null 2>&1")
+    os.system('sudo ifconfig '+wlan_name+' down')
+    os.system('sudo iwconfig '+wlan_name+' mode monitor')
+    os.system('sudo ifconfig '+wlan_name+' up')
+    os.system("sudo tshark -i "+wlan_name+" -T fields -e frame.time -e wlan.sa -e radiotap.channel.freq -e radiotap.dbm_antsignal > ~/Documents/$(date '+%Y_%m_%d_%H_%M_%S').txt > /dev/null 2>&1")
 
 def channel_hop():
     channels = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
     wait = 1
     i = 0
     while True:
-        os.system('iw dev wlan0 set channel %d'%channels[i])
+        os.system('iw dev '+wlan_name+' set channel %d'%channels[i])
         i = (i+1)%len(channels)
         time.sleep(wait)
 
