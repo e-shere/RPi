@@ -17,7 +17,7 @@ while True:
     p2.wait()
     print('time up')
     os.system('python ~/RPi/renaming.py')
-    os.system('scp ~/RPi/mp4/*.mp4 user@laptop:~/dated/ > /dev/null 2>&1')
+    os.system('scp ~/RPi/dated/*.mp4 user@laptop:~/dated/ > /dev/null 2>&1')
     os.system('scp ~/Documents/* user@laptop:~/documents/ > /dev/null 2>&1')
     os.system('rm -rf ~/RPi/h264/*')
     os.system('rm -rf ~/RPi/dated/*')
