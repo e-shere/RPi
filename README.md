@@ -1,7 +1,11 @@
 # RPi
 ## What I have done:
+
+### piaudio.py
+This records audio input from external microphone to a circular buffer, while simultaneously analysing the audio to [detect voice activity](https://github.com/wiseman/py-webrtcvad). When voice activity is detected audio is saved to a wav file, with time when voice activity began as the file name.
+
 ### pimotion.py
-This records video to a circular buffer, 10 seconds long, while simultaneously analysing the video to detect motion. When motion is detected video is recorded to a file in the folder h264 in h264 format.
+This records video to a circular buffer, 10 seconds long, while simultaneously analysing the video to detect motion. When motion is detected, video is recorded to a file in the folder h264 in h264 format.
 
 ### renaming.py
 This loops through all the video files in h264, renames them to the date and time of their creation in the format '%Y_%m_%d_%H_%M_%S'. Finally it saves them into the dated folder.
