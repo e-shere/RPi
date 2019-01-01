@@ -88,8 +88,7 @@ def main():
                 ring_buffer.clear()
                 voiced_frames=[]
                 #print("you finished speaking")
-            else:
-                #print("you are speaking")
+
 
 
 if __name__ == '__main__':
