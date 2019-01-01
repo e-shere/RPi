@@ -1,7 +1,11 @@
 # RPi
 ## What I have done:
+
+### piaudio.py
+This records audio input from external microphone to a circular buffer, while simultaneously analysing the audio to [detect voice activity](https://github.com/wiseman/py-webrtcvad). When voice activity is detected audio is saved to a wav file, with date and time when voice activity began as the file name in the format '%Y_%m_%d_%H_%M_%S.%f'.
+
 ### pimotion.py
-This records video to a circular buffer, 10 seconds long, while simultaneously analysing the video to detect motion. When motion is detected video is recorded to a file in the folder h264 in h264 format.
+This records video to a circular buffer, 10 seconds long, while simultaneously analysing the video to detect motion. When motion is detected, video is recorded to a file in the folder h264 in h264 format.
 
 ### renaming.py
 This loops through all the video files in h264, renames them to the date and time of their creation in the format '%Y_%m_%d_%H_%M_%S'. Finally it saves them into the dated folder.
@@ -60,6 +64,14 @@ ssh-copy-id user@laptop
 SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="us:bm:ac:ad:dr:ss", NAME="customname"
 ```
 And then reboot the RPi.
+
+### To record and analyse the audio
+```
+sudo apt-get install alsa-utils
+pip install pyaudio
+pip install webrtcvad
+```
+- The first two are necessary to record audio. The last imports the [python interface to the WebRTC Voice Activity Detector](https://github.com/wiseman/py-webrtcvad) which detects if the audio contains speech.
 
 ## What I still need to do:
 - Figure out why sometimes TSHark captures packets without a source MAC address. Why does this happen? Filter out all lines from wifi_data files that don't contain a MAC address
