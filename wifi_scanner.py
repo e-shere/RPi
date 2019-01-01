@@ -7,7 +7,7 @@ def start_tshark():
     os.system('sudo ifconfig '+wlan_name+' down')
     os.system('sudo iwconfig '+wlan_name+' mode monitor')
     os.system('sudo ifconfig '+wlan_name+' up')
-    os.system("sudo tshark -i "+wlan_name+" -T fields -e frame.time -e wlan.sa -e radiotap.channel.freq -e radiotap.dbm_antsignal > ~/Documents/$(date '+%Y_%m_%d_%H_%M_%S').txt > /dev/null 2>&1")
+    os.system("sudo tshark -i "+wlan_name+" -T fields -e frame.time -e wlan.sa -e radiotap.channel.freq -e radiotap.dbm_antsignal > ~/Documents/$(date '+%Y_%m_%d_%H_%M_%S').txt")
 
 def channel_hop():
     channels = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
