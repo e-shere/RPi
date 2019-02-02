@@ -19,6 +19,9 @@ This simultaneously runs two processes:
   Time of capture, Source MAC address, Frequency on which it was captured, Relative signal strength
 - Channel hopping. Loops through channels 1-14 of the 2.4GHz frequency, needed so that TShark can capture all the devices around it not just the ones on a single channel.
 
+### setup.yaml
+This stores major variables from the above programs so that they are easy to access and change
+
 ### start_all.sh
 Single script that:
 - Launches pimotion.py and wifi_scanner.py
@@ -72,6 +75,12 @@ pip install pyaudio
 pip install webrtcvad
 ```
 - The first two are necessary to record audio. The last imports the [python interface to the WebRTC Voice Activity Detector](https://github.com/wiseman/py-webrtcvad) which detects if the audio contains speech.
+
+### To use YAML for storing main variables
+```
+pip install pyyaml
+pip3 install pyyaml
+```
 
 ## What I still need to do:
 - Figure out why sometimes TSHark captures packets without a source MAC address. Why does this happen? Filter out all lines from wifi_data files that don't contain a MAC address
