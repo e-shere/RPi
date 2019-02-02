@@ -1,8 +1,12 @@
 from multiprocessing import Process
 import os
 import time
+import yaml
 
-wlan_name = "mywifi"
+with open("setup.yaml","r") as f:
+    setup = yaml.load(f)
+
+wlan_name = setup["wlan_name"]
 def start_tshark():
     os.system('sudo ifconfig '+wlan_name+' down')
     os.system('sudo iwconfig '+wlan_name+' mode monitor')

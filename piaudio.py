@@ -18,6 +18,10 @@ import wave
 import webrtcvad
 import datetime
 from pathlib import Path
+import yaml
+
+with open("setup.yaml", "r") as f:
+    setup = yaml.load(f)
 
 # saves section with audio to file
 # file name is the time when sombedy started speaking
@@ -31,11 +35,11 @@ def write_wave(path, audio, sample_rate):
 
 def main():
     FORMAT = pyaudio.paInt16
-    CHANNELS = 1
-    RATE = 32000
-    FRAME_DURATION = 30 #ms
+    CHANNELS = setup["A_CHANNELS"]
+    RATE = setup["A_RATE"]
+    FRAME_DURATION = setup["A_FRAME_DURATION"] #30 ms
     CHUNK = int(RATE*FRAME_DURATION/1000)
-    PADDING_DURATION = 300
+    PADDING_DURATION = setup["A_PADDING_DURATION"]
     num_padding_frames = int(PADDING_DURATION/FRAME_DURATION)
     FILE_PATTERN = 'audio/%s.wav'
 

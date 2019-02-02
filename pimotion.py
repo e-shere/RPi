@@ -3,15 +3,19 @@ import time
 import picamera
 import picamera.array
 import numpy as np
+import yaml
+
+with open("setup.yaml", "r") as f:
+    setup = yaml.load(f)
 
 FILE_PATTERN = '/root/RPi/h264/motion%02d.h264'
-FILE_BUFFER = 1048576
+FILE_BUFFER = setup["V_FILE_BUFFER"] #1048576
 
-REC_SECONDS = 10
-REC_BITRATE = 1000000
+REC_SECONDS = setup["V_REC_SECONDS"] #10
+REC_BITRATE = setup["V_REC_BITRATE"] #1000000
 
-MOTION_MAGNITUDE = 70
-MOTION_VECTORS = 10
+MOTION_MAGNITUDE = setup["V_MOTION_MAGNITUDE"] #70
+MOTION_VECTORS = setup["V_MOTION_VECTORS"] #10
 
 
 class MotionDetector(picamera.array.PiMotionAnalysis):
@@ -28,9 +32,10 @@ class MotionDetector(picamera.array.PiMotionAnalysis):
 
 def main():
     with picamera.PiCamera() as camera:
-        camera.resolution = (1640,1232)
-        camera.framerate = 30
-        camera.rotation = 180 #the camera is upside down
+        camera.resolution = (setup["V_RESOLUTION"][0],setup["V_RESOLUTION"][1])
+        #(1640,1232)
+        camera.framerate = setup["V_FRAMERATE"] #30
+        camera.rotation = setup["V_ROTATION"] #180 as the camera is upside down
         time.sleep(2)
 
 
