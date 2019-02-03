@@ -75,8 +75,8 @@ And then reboot the RPi.
 ### To record and analyse the audio
 ```
 sudo apt-get install alsa-utils
-pip install pyaudio
-pip install webrtcvad
+sudo apt-get install python3-pyaudio
+pip3 install webrtcvad
 ```
 - The first two are necessary to record audio. The last imports the [python interface to the WebRTC Voice Activity Detector](https://github.com/wiseman/py-webrtcvad) which detects if the audio contains speech.
 
