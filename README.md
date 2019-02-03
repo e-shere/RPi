@@ -60,6 +60,10 @@ ssh-keygen
 ssh-copy-id user@laptop
 ```
 - Edited settings on RPi and laptop so that they don't go to 'sleep'
+- It may be necessary to run the following command on the laptop (assuming it's running Linux) to allow you to connect by SSH to it:
+```
+sudo apt-get install openssh-server
+```
 
 ### Ensuring that the USB dongle has a static name (even after reboot)
 - Many of the useful files such as tc/udev/rules.d/70-persistent-net.rules or 75-persistent-net-generator.rules are missing, so the easiest way to get around this is to create the file /etc/udev/rules.d/76-netnames.rules, and add this line to it:
