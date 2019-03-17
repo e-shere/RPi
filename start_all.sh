@@ -3,7 +3,7 @@
 while true; do
 	python ~/RPi/wifi_scanner.py &
 	export scanner_pid=$!
-	python ~/RPi/pimotion.py &
+	./pimotion.py &
 	export camera_pid=$!
 	python3 ~/RPi/piaudio.py > /dev/null 2>&1 &
 	export audio_pid=$!
