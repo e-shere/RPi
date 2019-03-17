@@ -32,11 +32,12 @@ Single script that:
   - Deletes all h264 videos, and deletes all wifi data files (to prevent using up all space on SD card)
   - Starts all over again
 ## Things I had to do to make it work on Raspbian:
+(I am using ```#! /usr/bin/python3``` in each program to specify what version of Python to run with)
 ### To use the RPi camera and picamera module in python:
 - Installed the following two python modules:
 ```python
-  pip install picamera
-  pip install numpy
+  pip3 install picamera
+  pip3 install numpy
  ```
 ### To allow scp from the RPi to my laptop
 - Enabled SSH without a password, from RPi to laptop:
@@ -65,7 +66,6 @@ pip3 install webrtcvad
 
 ### To use YAML for storing main variables
 ```
-pip install pyyaml
 pip3 install pyyaml
 ```
 
