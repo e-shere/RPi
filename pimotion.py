@@ -4,11 +4,15 @@ import picamera
 import picamera.array
 import numpy as np
 import yaml
+import os
 
 with open("setup.yaml", "r") as f:
     setup = yaml.load(f)
 
-FILE_PATTERN = '/root/RPi/h264/motion%02d.h264'
+FOLDER = setup["raw_video_folder"]
+os.makedirs(FOLDER, exist_ok=True)
+
+FILE_PATTERN = FOLDER + 'motion%02d.h264'
 FILE_BUFFER = setup["V_FILE_BUFFER"] #1048576
 
 REC_SECONDS = setup["V_REC_SECONDS"] #10
