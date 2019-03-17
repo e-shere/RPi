@@ -39,6 +39,14 @@ Single script that:
   pip3 install picamera
   pip3 install numpy
  ```
+ ### To capture packet data:
+ - Installed TShark
+ ```sudo apt-get install tshark
+ ```
+ - Enabled running it as non-root user (select "yes")
+ ```sudo dpkg-reconfigure wireshark-common
+ ```
+ 
 ### To allow scp from the RPi to my laptop
 - Enabled SSH without a password, from RPi to laptop:
 ```
