@@ -41,10 +41,12 @@ Single script that:
  ```
  ### To capture packet data:
  - Installed TShark
- ```sudo apt-get install tshark
+ ```
+ sudo apt-get install tshark
  ```
  - Enabled running it as non-root user (select "yes")
- ```sudo dpkg-reconfigure wireshark-common
+ ```
+ sudo dpkg-reconfigure wireshark-common
  ```
  
 ### To allow scp from the RPi to my laptop
@@ -61,7 +63,8 @@ sudo apt-get install openssh-server
 ### Ensuring that the USB dongle has a static name (even after reboot)
 - Many of the useful files such as tc/udev/rules.d/70-persistent-net.rules or 75-persistent-net-generator.rules are missing, so the easiest way to get around this is to create the file /etc/udev/rules.d/76-netnames.rules, and add this line to it:
 ```
-SUBSYSTEM=="net", ACTION=="add", SUBSYSTEMS=="usb", NAME="customname"
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="ma:ca:dd:re:ss:xy
+", NAME="customname"
 ```
 And then reboot the RPi.
 ### To record and analyse the audio
@@ -76,6 +79,8 @@ pip3 install webrtcvad
 ```
 pip3 install pyyaml
 ```
+### Things to do:
+- Filter out router packets
 
 ## Things I had to do to make it work on Kali:
 I've been running this on [Kali for RPi](https://www.offensive-security.com/kali-linux-arm-images/) (choosing "Kali Linux RaspberryPi 2 and 3") because TShark seems to work slightly better on Kali. This means that a lot of the things I had to do will not be necessary on Raspbian as they come by default.
