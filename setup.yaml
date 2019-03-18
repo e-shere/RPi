@@ -1,6 +1,7 @@
 wlan_name: "mywifi"
 
 raw_video_folder: "raw/"
+wifi_data_folder: "wifi/"
 V_FILE_BUFFER: 1048576
 V_REC_SECONDS: 10
 V_REC_BITRATE: 1000000

@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 from multiprocessing import Process
 import os
 import time
@@ -7,18 +8,21 @@ with open("setup.yaml","r") as f:
     setup = yaml.load(f)
 
 wlan_name = setup["wlan_name"]
+FOLDER = setup["wifi_data_folder"]
+os.makedirs(FOLDER, exist_ok = True)
+
 def start_tshark():
     os.system('sudo ifconfig '+wlan_name+' down')
     os.system('sudo iwconfig '+wlan_name+' mode monitor')
     os.system('sudo ifconfig '+wlan_name+' up')
-    os.system("sudo tshark -i "+wlan_name+" -T fields -e frame.time -e wlan.sa -e radiotap.channel.freq -e radiotap.dbm_antsignal > ~/Documents/$(date '+%Y_%m_%d_%H_%M_%S').txt")
+    os.system("tshark -i "+wlan_name+" -Y \"wlan.sa and wlan.fc.type_subtype == 0x0008\" -T fields -e frame.time -e wlan.sa_resolved -e radiotap.channel.freq -e radiotap.dbm_antsignal >" + FOLDER + "$(date '+%Y_%m_%d_%H_%M_%S').txt")
 
 def channel_hop():
     channels = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
     wait = 1
     i = 0
     while True:
-        os.system('iw dev '+wlan_name+' set channel %d'%channels[i])
+        os.system('sudo iw dev '+wlan_name+' set channel %d'%channels[i])
         i = (i+1)%len(channels)
         time.sleep(wait)
 

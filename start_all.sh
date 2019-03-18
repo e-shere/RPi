@@ -1,7 +1,7 @@
 #!/bin/bash
 
 while true; do
-	python ~/RPi/wifi_scanner.py &
+	./wifi_scanner.py &
 	export scanner_pid=$!
 	./pimotion.py &
 	export camera_pid=$!
