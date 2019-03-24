@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 """
 with every frame that comes in:
     check if it is_speech 
@@ -34,6 +35,9 @@ def write_wave(path, audio, sample_rate):
         wf.writeframes(audio)
 
 def main():
+    FOLDER = setup["audio_folder"]
+    os.makedirs(FOLDER, exist_ok=True)
+
     FORMAT = pyaudio.paInt16
     CHANNELS = setup["A_CHANNELS"]
     RATE = setup["A_RATE"]
@@ -41,7 +45,7 @@ def main():
     CHUNK = int(RATE*FRAME_DURATION/1000)
     PADDING_DURATION = setup["A_PADDING_DURATION"]
     num_padding_frames = int(PADDING_DURATION/FRAME_DURATION)
-    FILE_PATTERN = 'audio/%s.wav'
+    FILE_PATTERN = FOLDER + '%s.wav'
 
     p = pyaudio.PyAudio()
     # ring buffer to store the last n seconds of audio
