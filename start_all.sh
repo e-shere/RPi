@@ -5,7 +5,7 @@ while true; do
 	export scanner_pid=$!
 	./pimotion.py &
 	export camera_pid=$!
-	python3 ~/RPi/piaudio.py > /dev/null 2>&1 &
+	./piaudio.py > /dev/null 2>&1 &
 	export audio_pid=$!
 
 	sleep 60
@@ -14,7 +14,7 @@ while true; do
 	kill $audio_pid
 	echo("time up")
 
-	python ~/RPi/renaming.py
+	./renaming.py
 
 	scp ~/RPi/dated/*.h264 user@laptop:~/dated/ > /dev/null 2>&1
 	scp ~/Documents/* user@laptop:~/documents/ > /dev/null 2>&1
