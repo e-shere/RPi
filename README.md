@@ -48,7 +48,11 @@ Single script that:
  ```
  sudo dpkg-reconfigure wireshark-common
  ```
- 
+ - Ran the following line so TShark can be used in scripts
+```
+sudo chmod +x /usr/bin/dumpcap
+```
+
 ### To allow scp from the RPi to my laptop
 - Enabled SSH without a password, from RPi to laptop:
 ```
@@ -59,10 +63,6 @@ ssh-copy-id user@laptop
 - It may be necessary to run the following command on the laptop (assuming it's running Linux) to allow you to connect by SSH to it:
 ```
 sudo apt-get install openssh-server
-```
-- Ran the following line so TShark can be used in scripts
-```
-sudo chmod +x /usr/bin/dumpcap
 ```
 
 ### Ensuring that the USB dongle has a static name (even after reboot)
