@@ -5,7 +5,7 @@ import time
 import yaml
 
 with open("setup.yaml","r") as f:
-    setup = yaml.load(f)
+    setup = yaml.load(f, Loader=yaml.FullLoader)
 
 wlan_name = setup["wlan_name"]
 FOLDER = setup["wifi_data_folder"]

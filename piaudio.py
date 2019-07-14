@@ -22,7 +22,7 @@ from pathlib import Path
 import yaml
 
 with open("setup.yaml", "r") as f:
-    setup = yaml.load(f)
+    setup = yaml.load(f, Loader=yaml.FullLoader)
 
 # saves section with audio to file
 # file name is the time when sombedy started speaking

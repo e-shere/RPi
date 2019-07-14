@@ -8,7 +8,7 @@ import yaml
 import os
 
 with open("setup.yaml", "r") as f:
-    setup = yaml.load(f)
+    setup = yaml.load(f, Loader=yaml.FullLoader)
 
 FOLDER = setup["raw_video_folder"]
 os.makedirs(FOLDER, exist_ok=True)

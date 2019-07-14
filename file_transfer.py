@@ -3,7 +3,7 @@ import os
 import yaml
 
 with open("setup.yaml","r") as f:
-    setup = yaml.load(f)
+    setup = yaml.load(f, Loader=yaml.FullLoader)
 
 RV_FOLDER = setup["raw_video_folder"]
 V_FOLDER = setup["dated_video_folder"]
